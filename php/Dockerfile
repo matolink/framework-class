@@ -6,6 +6,8 @@ RUN apt update \
             libicu-dev \
             libpq-dev \
             libzip-dev \
+            nodejs\
+            npm\
             zip \
             zlib1g-dev \
         && docker-php-ext-install \
