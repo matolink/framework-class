@@ -24,10 +24,10 @@
                     debitis adipisci modi expedita inventore vel excepturi,
                     facere animi accusamus? Voluptatem ab ad harum?
                 </p>
-                <p class="text-left post-txt"><i>Categoría: Desarrollo web</i></p>
+                <p class="text-left post-txt"><i>Registra tu contenido favorito sin publicidad ni otros distractores</i></p>
             </div>
         <div class="col-md-7 text-center">
-                <a class="btn  btn-lg btn-block" href="{{url('/home')}}">Ingresar</a>
+                <a class="btn  btn-lg btn-block" href="{{url('/login')}}">Ingresar</a>
             </div>
         </div>
     </section>

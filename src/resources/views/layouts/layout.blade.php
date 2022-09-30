@@ -68,10 +68,14 @@
         <!-- Fin barra autenticacion y logout -->
     <!-- Logo -->
  <nav class="navbar navbar-light bg-main" style="height : 100px">
-            <a class="h-100" href="{{ url('/')}}">
+            <a class="h-100 m-auto" href="{{ url('/')}}">
                 <img src="{{asset('images/logo.png')}}" alt="" loading="lazy" class="h-100 w-auto m-auto">
             </a>
-                <h1 class="m-auto w-75">Diario de consumo</h1>
+                <h1 class="m-auto text-center">Diario de consumo</h1>
+            @guest
+            @else
+            <a class="btn m-auto" href="{{url('/add')}}">Agregar Nuevo Contenido</a>
+            @endguest
     </nav>
     <!-- Contenido -->
        @yield('content')
