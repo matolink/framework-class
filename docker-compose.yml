@@ -1,26 +1,21 @@
 services:
-  database:
-    image: postgres
-    container_name: database
-    restart: unless-stopped
+  mariadb:
+    image: docker.io/bitnami/mariadb:10.6
     environment:
-      POSTGRES_USER: framework-class
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: laravel_docker
-    volumes:
-      - ./postgres-data:/var/lib/postgresql/data
+      # ALLOW_EMPTY_PASSWORD is recommended only for development.
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_USER=framework
+      - MARIADB_DATABASE=framework
+  web-server:
+    image: docker.io/bitnami/laravel:8.6.11
     ports:
-      - '5432:5432'
-
-  # php-apache:
-  #   container_name: php-apache
-  #   build:
-  #     context: ./php
-  #   ports:
-  #     - '8080:80'
-  #   volumes:
-  #     - ./src:/var/www/laravel_docker
-  #     - ./apache/default.conf:/etc/apache2/sites-enabled/000-default.conf
-  #   depends_on:
-  #     - database
-
+      - '8000:8000'
+    environment:
+      - DB_HOST=mariadb
+      - DB_PORT=3306
+      - DB_USERNAME=framework
+      - DB_DATABASE=framework
+    volumes:
+      - './src:/app'
+    depends_on:
+      - mariadb
