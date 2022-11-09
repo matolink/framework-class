@@ -19,5 +19,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/add', [App\Http\Controllers\HomeController::class, 'add'])->name('add');
+Route::get('/home', [App\Http\Controllers\EntryController::class, 'index'])->name('home');
+Route::get('/add', [App\Http\Controllers\EntryController::class, 'add'])->name('add');
+Route::post('/save', [App\Http\Controllers\EntryController::class, 'store'])->name('save');
+Route::get('/edit/{id}', [App\Http\Controllers\EntryController::class, 'edit'])->name('edit');
+Route::get('/delete/{id}', [App\Http\Controllers\EntryController::class, 'destroy']);

@@ -13,8 +13,9 @@
             <h5 class="card-title">Blade runner (1982)</h5>
             <h5 class="card-title">Fecha: 30-09-22</h5>
             <p class="card-text">In a dystopian 2019 Los Angeles of towering skyscrapers, the grizzled former Blade Runner, Rick Deckard, is called out of retirement...</p>
-            <a href="#" class="btn btn-primary">Rate</a>
+            <p class="card-text">Rating 3.5</p>
             <a href="#" class="btn btn-primary">Delete</a>
+            <a href="#" class="btn btn-primary">Edit</a>
             <a href="#" class="btn btn--primary">Share</a>
               </div>
             </div>
@@ -175,4 +176,40 @@
         <!--     </div>         -->
         <!-- </div> -->
 </div>
+@endsection
+@section('js')
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    @if(session('eliminar') == 'ok')
+        <script>
+            Swal.fire(
+                    '¡Eliminado!',
+                    'El registro ha sido eliminado correctamente',
+                    'success'
+                    )
+        </script>
+    @endif   
+        <script> 
+            $('.formulario-eliminar').submit(function(e){
+                e.preventDefault();
+                
+                Swal.fire({
+                    title: '¿Estás seguro?',
+                    text: "¡No podrás volver atrás!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Sí, ¡eliminar!',
+                    cancelButtonText: 'Cancelar',
+                    }).then((result) => {
+                    if (result.isConfirmed) { 
+
+                        this.submit();
+                    }
+                })
+
+            });
+        </script>
 @endsection
