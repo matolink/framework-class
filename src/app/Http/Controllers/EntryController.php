@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Entry;
 
 class EntryController extends Controller
 {
     public function index()
     {
         $entries = Entry::all();
-        return view('home')->with('entry',$entries);
+        return view('home')->with('entries',$entries);
     }
 
     public function add()
@@ -28,6 +29,18 @@ class EntryController extends Controller
         return redirect('/home');
     }
 
+    public function update(Request $request, $id)
+    {
+        $entries = Entry::find($id);
+        $entries->name = $request->get('name');
+        $entries->rating = $request->get('rating');
+        $entries->image = $request->get('image');
+        $entries->summary = $request->get('summary');
+
+        $entries->save();
+        return redirect('/home');
+    }
+
     public function edit($id)
     {
         $entry = Entry::find($id);
@@ -39,7 +52,7 @@ class EntryController extends Controller
         $entry = Entry::find($id);       
 
         $entry->delete();
-        return redirect('/home')->with('eliminar','ok');
+        return redirect('/home')->with('delete','ok');
     }
     //
 }

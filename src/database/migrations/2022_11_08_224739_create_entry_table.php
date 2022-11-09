@@ -13,11 +13,11 @@ class CreateEntryTable extends Migration
      */
     public function up()
     {
-        Schema::create('entry', function (Blueprint $table) {
+        Schema::create('entries', function (Blueprint $table) {
             $table->id();
             $table->String('name');
             $table->timestamps();
-            $table->dateTime('date_added');
+            $table->timestamp('date_added')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->integer('rating');
             $table->String('image');
             $table->String('summary');
@@ -31,6 +31,6 @@ class CreateEntryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('entry');
+        Schema::dropIfExists('entries');
     }
 }

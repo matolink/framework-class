@@ -6,6 +6,7 @@
 <div class="container">
 <h1>Agregar un nuevo Contenido</h1>
 <form method="POST" action="{{ url('/save') }}">
+    @csrf
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Nombre Pelicula</label>
     <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" required>

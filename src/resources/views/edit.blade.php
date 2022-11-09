@@ -5,7 +5,7 @@
 @section('content')
 <div class="container">
 <h1>Editar Contenido</h1>
-<form method="POST" action= "{{ url('/edit/'.$entry->id) }}">
+<form method="POST" action= "{{ url('/update/'.$entry->id) }}">
     @csrf
     @method('PUT');
   <div class="mb-3">
