@@ -3,24 +3,24 @@
 @section('content')
 <div class="container-fluid content">
     <div class="row justify-content-center">
-        <div class="card mb-3" style="max-width: 540px;">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img src="{{asset('images/br.jpg')}}" class="img-fluid rounded-start" alt="...">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-            <h5 class="card-title">Blade runner (1982)</h5>
-            <h5 class="card-title">Fecha: 30-09-22</h5>
-            <p class="card-text">In a dystopian 2019 Los Angeles of towering skyscrapers, the grizzled former Blade Runner, Rick Deckard, is called out of retirement...</p>
-            <p class="card-text">Rating 3.5</p>
-            <a href="#" class="btn btn-primary">Delete</a>
-            <a href="#" class="btn btn-primary">Edit</a>
-            <a href="#" class="btn btn--primary">Share</a>
-              </div>
-            </div>
-          </div>
-        </div>
+        <!-- <div class="card mb-3" style="max-width: 540px;"> -->
+        <!--   <div class="row g-0"> -->
+        <!--     <div class="col-md-4"> -->
+        <!--       <img src="{{asset('images/br.jpg')}}" class="img-fluid rounded-start" alt="..."> -->
+        <!--     </div> -->
+        <!--     <div class="col-md-8"> -->
+        <!--       <div class="card-body"> -->
+        <!--     <h5 class="card-title">Blade runner (1982)</h5> -->
+        <!--     <h5 class="card-title">Fecha: 30-09-22</h5> -->
+        <!--     <p class="card-text">In a dystopian 2019 Los Angeles of towering skyscrapers, the grizzled former Blade Runner, Rick Deckard, is called out of retirement...</p> -->
+        <!--     <p class="card-text">Rating 3.5</p> -->
+        <!--     <a href="#" class="btn btn-primary">Delete</a> -->
+        <!--     <a href="#" class="btn btn-primary">Edit</a> -->
+        <!--     <a href="#" class="btn btn--primary">Share</a> -->
+        <!--       </div> -->
+        <!--     </div> -->
+        <!--   </div> -->
+        <!-- </div> -->
         @foreach ($entries as $entry)
         <div class="card mb-3" style="max-width: 540px;">
           <div class="row g-0">
@@ -33,12 +33,14 @@
             <h5 class="card-title">Fecha: {{$entry->date_added}}</h5>
             <p class="card-text">{{$entry->summary}}</p>
             <p class="card-text">Rating {{$entry->rating}}</p>
+            @if($user == 0)
             <a href="{{ url('/edit/'.$entry->id) }}" class="btn btn-primary">Edit</a>
             <form action = "{{ url('/delete/'.$entry->id) }}" class = "d-inline formulario-eliminar">                     
                 @method('DELETE')
                 @csrf
                 <button type="submit" class="btn btn-primary ">Delete</button> 
            </form>
+            @endif
             <a href="#" class="btn btn--primary">Share</a>
               </div>
             </div>

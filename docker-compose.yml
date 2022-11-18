@@ -6,6 +6,8 @@ services:
       - ALLOW_EMPTY_PASSWORD=yes
       - MARIADB_USER=framework
       - MARIADB_DATABASE=framework
+    ports:
+      - '3306:3306'
   web-server:
     image: docker.io/bitnami/laravel:8.6.11
     ports:

@@ -9,8 +9,9 @@ class EntryController extends Controller
 {
     public function index()
     {
+        $user = auth()->user();
         $entries = Entry::all();
-        return view('home')->with('entries',$entries);
+        return view('home')->with('entries',$entries)->with('user',$user->id_role);
     }
 
     public function add()
@@ -52,7 +53,7 @@ class EntryController extends Controller
         $entry = Entry::find($id);       
 
         $entry->delete();
-        return redirect('/home')->with('delete','ok');
+        return redirect('/home')->with('delete','ok')->with('user',$user->id_role);
     }
     //
 }
