@@ -11,6 +11,9 @@ class EntryController extends Controller
     public function index()
     {
         $user = auth()->user();
+        if(!isset($user)){
+            return view('about');
+        }
         $entries = Entry::all();
         return view('home')->with('entries',$entries)->with('user',$user->id_role);
     }
@@ -32,6 +35,8 @@ class EntryController extends Controller
             return redirect('/add')->with('alert','Film not found, try another title!');
         }
         $movie_object = $movie_request->object()->results[0];
+        var_dump($movie_object);
+
         #Summary manipulation
         $summary = $movie_object->overview;
         if(mb_strlen($summary) > 100) {
@@ -60,6 +65,7 @@ class EntryController extends Controller
         $entries->rating = $request->get('rating');
         $entries->image = $movie_poster;
         $entries->summary = $teaser;
+        $entries->release_date = $movie_object->release_date;
         $entries->save();
         return redirect('/home');
     }

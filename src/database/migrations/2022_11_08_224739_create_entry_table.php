@@ -21,6 +21,7 @@ class CreateEntryTable extends Migration
             $table->integer('rating');
             $table->String('image');
             $table->String('summary');
+            $table->String('release_date');
         });
     }
 

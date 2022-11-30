@@ -1,4 +1,5 @@
 @extends('layouts.layout')
+@section('title', 'Inicio')
 
 @section('content')
 <div class="container-fluid content">
@@ -29,8 +30,9 @@
             </div>
             <div class="col-md-8">
               <div class="card-body">
-            <h5 class="card-title">{{$entry->name}}()</h5>
-            <h5 class="card-title">Fecha: {{$entry->date_added}}</h5>
+            <h5 class="card-title">{{$entry->name}}</h5>
+            <h5 class="card-title">Fecha de Estreno: {{$entry->release_date}}</h5>
+            <p class="card-text">Agregada la fecha:{{$entry->date_added}}</p>
             <p class="card-text">{{$entry->summary}}</p>
             <p class="card-text">Rating {{$entry->rating}}</p>
             @if($user == 0)
