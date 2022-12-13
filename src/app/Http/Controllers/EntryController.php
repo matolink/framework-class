@@ -15,16 +15,31 @@ class EntryController extends Controller
             return view('about');
         }
         $entries = Entry::all();
-        return view('home')->with('entries',$entries)->with('user',$user->id_role);
+        return view('home')->with('entries',$entries)->with('user',$user->id_role)->with('title','Diario General');
+    }
+
+    public function personal()
+    {
+        $user = auth()->user();
+        if(!isset($user)){
+            return view('about');
+        }
+        $entries = Entry::where('user_email', $user->email)->get();
+        return view('home')->with('entries',$entries)->with('user',$user->id_role)->with('title','Diario Personal');
     }
 
     public function add()
     {
+        $user = auth()->user();
+        if(!isset($user)){
+            return view('about');
+        }
         return view('add');
     }
 
     public function store(Request $request)
     {
+        $user = auth()->user();
         $api_key = env('TMDB_API_KEY');
         $img_url = 'https://image.tmdb.org/t/p/w500';
         $user_input_name = $request->get('name');
@@ -35,7 +50,6 @@ class EntryController extends Controller
             return redirect('/add')->with('alert','Film not found, try another title!');
         }
         $movie_object = $movie_request->object()->results[0];
-        var_dump($movie_object);
 
         #Summary manipulation
         $summary = $movie_object->overview;
@@ -66,6 +80,7 @@ class EntryController extends Controller
         $entries->image = $movie_poster;
         $entries->summary = $teaser;
         $entries->release_date = $movie_object->release_date;
+        $entries->user_email = $user->email;
         $entries->save();
         return redirect('/home');
     }

@@ -4,9 +4,8 @@
         <div class="row justify-content-center">
             <!-- Post -->
             <div class="col-12 col-md-7 text-center">
-                <h1>Simplemente tus gustos</h1>
                 <hr>
-                <img src="images/writing_person.png" alt="Writing person" class="img-fluid rounded">
+                <img src="https://media.istockphoto.com/photos/spectators-at-openair-cinema-picture-id502416229?k=6&m=502416229&s=170667a&w=0&h=QKz5ZFg-mCse0IFz71xCmjfO0c9mFCkPV_2BMa4pq6w=" alt="Writing person" class="img-fluid rounded">
 
                 <p class="text-left mt-3 post-txt">
                 </p>

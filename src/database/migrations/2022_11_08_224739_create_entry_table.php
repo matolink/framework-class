@@ -22,6 +22,7 @@ class CreateEntryTable extends Migration
             $table->String('image');
             $table->String('summary');
             $table->String('release_date');
+            $table->String('user_email');
         });
     }
 

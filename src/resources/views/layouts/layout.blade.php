@@ -48,7 +48,10 @@
                                         {{ __('Logout') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('home') }}">
-                                        {{ __('Home') }}
+                                        {{ __('Diario General') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('personal') }}">
+                                        {{ __('Mi Diario') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -71,10 +74,12 @@
             <a class="h-100 m-auto" href="{{ url('/')}}">
                 <img src="{{asset('images/logo.png')}}" alt="" loading="lazy" class="h-100 w-auto m-auto">
             </a>
-                <h1 class="m-auto text-center">Diario de consumo</h1>
+                <h1 class="m-auto text-center">{{$title ?? 'Simplemente tus Gustos'}}</h1>
             @guest
             @else
             <a class="btn m-auto" href="{{url('/add')}}">Agregar Nuevo Contenido</a>
+            <a class="btn m-auto" href="{{url('/home')}}">Agregadas por todos</a>
+            <a class="btn m-auto" href="{{url('/personal')}}">Agregadas por mí</a>
             @endguest
     </nav>
     <!-- Contenido -->

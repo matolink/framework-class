@@ -20,6 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\EntryController::class, 'index'])->name('home');
+Route::get('/personal', [App\Http\Controllers\EntryController::class, 'personal'])->name('personal');
 Route::get('/add', [App\Http\Controllers\EntryController::class, 'add'])->name('add');
 Route::post('/save', [App\Http\Controllers\EntryController::class, 'store'])->name('save');
 Route::get('/edit/{id}', [App\Http\Controllers\EntryController::class, 'edit'])->name('edit');
